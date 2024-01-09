@@ -46,14 +46,15 @@ bool testDevice(char deviceName[])
             deviceName, errno, strerror(errno));
         exit(EXIT_FAILURE);
     }
-    bool valid = false;
+    bool valid = true;
     char correctDriverName[] = "v4l2 loopback";
+    // debug string
+    fprintf(stderr, "Device '%s' driver is '%s'\n", deviceName, cap.driver );
     if (0 != strcmp(cap.driver, correctDriverName)) {
         fprintf(stderr, "Device driver is '%s' not '%s'\n",
             cap.driver, correctDriverName);
         valid = false;
     }
-    valid = true;
 
     return valid;
 }
